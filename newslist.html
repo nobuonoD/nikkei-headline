@@ -1,0 +1,37 @@
+<html>
+<head>
+<!-- STYLE SHEET -->
+<link rel="STYLESHEET" href="/assets/css/nikkei.css" type="text/css">
+</head>
+<!-- SCRIPT -->
+<script src="/assets/js/jquery-2.1.0.min.js"></script>
+<script>
+    var uri = "http://www.nikkei.com/news/category/?at=DGXZZO0195576008122009000000";
+    var newsall = '';
+    $.ajax({
+              type: 'GET',
+              url: uri,
+              dataType: 'html',
+              success: function(data) {
+              var news = $(data).find('.cmn-article_title');
+              news.each(function(i, em){
+                var title = $(this).find('a').find('span').html();
+                var newslink = uri + $(this).find('a').attr('href');
+                var link = document.createElement('a');
+                link.href = newslink;
+                link.innerHTML = title;
+                link.setAttribute("onclick","createTab('" + link.href + "');");
+                document.body.appendChild(link);
+                document.body.appendChild(createBR());
+              });
+            }
+         });
+    function createBR(){
+        return document.createElement('br');
+    }
+    function createTab(blog_url) {
+      chrome.tabs.create({url: blog_url});
+    }
+</script>
+</html>
+

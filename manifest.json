@@ -1,0 +1,12 @@
+{
+  "name": "Nikkei NewsPaper",
+  "version": "1.0",
+  "description": "Focus on stocks info",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "newslist.html"
+  },
+  "permissions": [
+    "http://www.nikkei.com/*"
+  ]
+}
